@@ -4,19 +4,21 @@ $(function () {
     new Swiper('#topSwiper', {
         // nextButton: '.swiper-button-next',
         // prevButton: '.swiper-button-prev',
-        paginationClickable: true,
         spaceBetween: 5,
-        centeredSlides: true,
-        autoplayDisableOnInteraction: false,
-        loop: true,
-        autoplay: {
-            delay: 2500,
-            disableOnInteraction: false,
-        },
+      centeredSlides: true,
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
+      },
       pagination: {
         el: '.swiper-pagination',
         clickable: true,
       },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+        loop: true,
     });
 
 
