@@ -8,7 +8,7 @@ def home(request):
     # 轮播图数据
     wheels = Wheel.objects.all()
 
-    # 导航数据
+    # 导航数据 
     navs = Nav.objects.all()
 
     # 每日必购
