@@ -2,7 +2,7 @@ from django.urls import path
 
 from App import views
 
-urlpatterns = [
+urlpatterns = [ 
     path("base/", views.base, name="base"),
     path("", views.home, name="home"),
     path("cart/", views.cart, name="cart"),
