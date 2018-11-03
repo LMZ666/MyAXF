@@ -12,7 +12,7 @@ footer .market dd {
     color: #ffd601;
 }
 
-
+/*type-slider*/
 .market .type-slider{
     width: 4rem;
     height: 100%;
@@ -45,7 +45,9 @@ footer .market dd {
 .market .type-slider ul .active span{
     display: block;
 }
-.market .type-slider ul li a{}
+.market .type-slider ul li a{
+    color: black;
+}
 
 
 
