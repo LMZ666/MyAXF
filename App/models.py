@@ -89,6 +89,58 @@ class Goods(models.Model):
     class Meta:
         db_table = "axf_goods"
 
+class User(models.Model):
+    name = models.CharField(max_length=30)
+    account = models.CharField(max_length=20,unique=True)
+    password = models.CharField(max_length=256)
+    token = models.CharField(max_length=256)
+    img = models.CharField(max_length=200,default="/static/mine/img/default.jpg")
+    rank = models.CharField(max_length=10,default=1)
+
+    class Meta:
+        db_table="axf_user"
+
+class Carts(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    goods = models.ForeignKey(Goods,on_delete=models.CASCADE)
+    num = models.IntegerField()
+    isselect = models.BooleanField(default=True)
+    class Meta:
+        db_table = "axf_carts"
+
+
+class Order(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    createtime = models.DateTimeField(auto_now_add=True)
+    # 状态
+    # -1 过期
+    # 1 未付款
+    # 2 已付款，未发货
+    # 3 已发货，快递
+    # 4 已签收，未评价
+    # 5 已评价
+    # 6 退款....
+    status = models.IntegerField(default=1)
+    # 订单号
+    identifier = models.CharField(max_length=100)
+
+    class Meta:
+        db_table = "axf_order"
+
+
+class OrderGoods(models.Model):
+    # 用来连接商品和订单之间的关系
+    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    goods = models.ForeignKey(Goods, on_delete=models.CASCADE)
+    num = models.IntegerField()
+
+    class Meta:
+        db_table = "axf_ordergoods"
+
+
+
+
+
 
 
 

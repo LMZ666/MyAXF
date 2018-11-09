@@ -1,0 +1,48 @@
+{% extends "base/base.html" %}
+{% load static %}
+{% block title %}
+    爱鲜疯
+{% endblock %}
+{% block cssfile %}
+    <link rel="stylesheet" href="{% static "mine/css/register.css" %}">
+    <link rel="stylesheet" href="{% static "mine/css/login.css" %}">
+{% endblock %}
+{% block jsfile %}
+    <script src="{% static "mine/js/login.js" %}"></script>
+{% endblock %}
+{% block content %}
+    <div class="content">
+        <a class="glyphicon glyphicon-remove" href="{% url "app:mine" %}"></a>
+        <h3>登录</h3>
+        <form class="form-inline" action="{% url "app:login" %}" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">账号</div>
+                    <input id="account" type="text" class="form-control" placeholder="6-12位数字" name="account">
+                    {#                    输入框后的对勾和红叉的标识#}
+                    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                </div>
+                <i></i>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">密码</div>
+                    <input type="text" id="passwd" class="form-control" placeholder="6-12位" name="passwd">
+                    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                </div>
+                <i></i>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="submit" class="form-control" value="登录" id="subBtn">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <a class="form-control" href="{% url "app:register" %}">注册</a>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

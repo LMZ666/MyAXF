@@ -1,7 +1,7 @@
 $(function(){
     var type = $(".type-slider li")
     var index = $.cookie("index")
-    console.log(index)
+    // console.log(index)
     if($.cookie("index")){
         $(".type-slider li").eq(index).addClass('active')
     }
@@ -45,4 +45,45 @@ $(function(){
         }
 
     })
+
+    // 遍历一下.bt-wrapper .num里面如果有数据就会显示减号
+    $(".bt-wrapper .num").each(function(){
+        //parseInt可以截取字符串的数字部分
+        // console.log($(this).html())
+        if(parseInt($(this).html())){
+            console.log($(this))
+            $(this).prev().show()
+        }
+    })
+
+    $(".plus").click(function(){
+        var goodid = $(this).attr("goodid")
+        $(this).prev().prev().show()
+        $(this).prev().show()
+        var this_=$(this)
+        var data ={"goodid":goodid}
+        $.get("/addcart/",data,function(data){
+            if(data.login=="0"){
+                window.open("/login/",target="_self")
+            }
+            this_.prev().html(data["cartnum"])
+            console.log(this_.prev())
+            console.log(data["cartnum"])
+        })
+    })
+    $(".minus").click(function(){
+        var this_ = $(this)
+        var goodid = $(this).attr("goodid")
+        var data = {"goodid":goodid}
+        if(parseInt($(this).next().html())==1){
+            this_.hide()
+            this_.next().hide()
+        }
+        $.get("/minuscart/",data,function (data) {
+            console.log(data)
+            this_.next().html(data["cartnum"])
+        })
+    })
+
+
 })

@@ -204,4 +204,6 @@ footer .market dd {
     margin-left: 0.2rem;
 }
 
-
+.minus{
+    display: none;
+}

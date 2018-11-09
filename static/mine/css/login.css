@@ -1,0 +1,21 @@
+form{
+    margin-top: 1rem;
+}
+h3{
+    margin: 0;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.content>a{
+    font-size: 1.5rem;
+    float: right;
+}
+.input-group>a{
+    text-align: center;
+    background: #d58512;
+}
+.form-group>i{
+    color: red;
+    font-size: 0.7rem;
+}

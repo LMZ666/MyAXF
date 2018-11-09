@@ -1,0 +1,68 @@
+{% extends "base/base.html" %}
+{% load static %}
+<meta charset="UTF-8">
+{% block title %}
+    爱鲜疯|注册
+{% endblock %}
+{% block cssfile %}
+    <link rel="stylesheet" href="{% static "mine/css/register.css" %}">
+{% endblock %}
+{% block jsfile %}
+    <script src="{% static "mine/js/register.js" %}">
+    </script>
+{% endblock %}
+{% block content %}
+    <div class="register">
+        <a class="glyphicon glyphicon-remove" href="{% url 'app:mine' %}"></a>
+        <form class="form-inline" action="{% url "app:register" %}" enctype="multipart/form-data" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">账号</div>
+                    <input id="account" type="text" class="form-control" placeholder="6-12位数字" name="account">
+{#                    输入框后的对勾和红叉的标识#}
+                    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                </div>
+                 <i>该用户已注册</i>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">密码</div>
+                    <input type="text" id="passwd1" class="form-control" placeholder="6-12位" name="passwd">
+                    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">密码</div>
+                    <input type="text" id="passwd2" class="form-control" placeholder="确认密码">
+                    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                </div>
+            </div>
+            <div id="checkcode" class="form-group">
+                <img id="imgcode">
+                <div class="input-group">
+                    <div class="input-group-addon">验证</div>
+                    <input type="text" class="form-control" placeholder="验证码" id="code">
+                    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <div class="input-group-addon">昵称</div>
+                    <input type="text" class="form-control" placeholder="2-6位汉字,字母" name="name" id="name">
+                    <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleInputFile">上传照片</label>
+                <input type="file" name="img">
+            </div>
+            <div class="form-group">
+                <div class="input-group">
+                    <input type="submit" class="form-control" value="注册">
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}

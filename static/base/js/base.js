@@ -5,3 +5,4 @@ $(function(){
     // rem 相对于body 字体大小
     document.documentElement.style.fontSize = innerWidth / 320 * 16 + 'px'
 })
+

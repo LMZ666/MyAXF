@@ -6,3 +6,162 @@
 {% block cssfile %}
     <link rel="stylesheet" href="{% static "mine/css/mine.css" %}">
 {% endblock %}
+{% block jsfile %}
+    <script src="{% static "mine/js/mine.js" %}"></script>
+{% endblock %}
+{% block content %}
+    <div class="mine">
+        <div class="user-wrapper">
+            <div class="user-img">
+                {#                头像 #}
+                <img src={{ user.img | default:"/static/mine/img/default.jpg" }}>
+            </div>
+            <div class="user-content">
+                {% if islogin %}
+                    <p class="glyphicon glyphicon-user">
+                        {{ user.name }}
+                    </p>
+                {% else %}
+                    <a href="{% url "app:login" %}">
+                        <p class="glyphicon glyphicon-user">
+                            用户未登录
+                        </p>
+                    </a>
+                {% endif %}
+                <br>
+                <p class="glyphicon glyphicon-star">
+                    {% if islogin %}
+                        {{ user.rank }}星级
+                    {% else %}
+                        用户星级
+                    {% endif %}
+                </p>
+            {% if islogin %}
+                {% else %}
+                <a href="{% url "app:register" %}">
+                <span class="register">
+                    注册
+                </span>
+                </a>
+            {% endif %}
+
+            </div>
+        </div>
+        <div class="collect">
+            <div class="glyphicon glyphicon-log-in">
+                收藏
+            </div>
+        </div>
+        <div class="other">
+            <section>
+                <div class="my">
+                <span>
+                    我的订单
+                </span>
+                    <a href="{% url "app:order" %}">
+                        全部订单
+                        <span class="glyphicon glyphicon-chevron-right">
+                    </span>
+                    </a>
+                </div>
+
+            </section>
+            <section>
+                <ul>
+                    <li>
+                        <dl>
+                            <dt class="glyphicon glyphicon-log-in">
+
+                            </dt>
+                            <dd>
+                                待付款
+                            </dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <dt class="glyphicon glyphicon-log-out">
+
+                            </dt>
+                            <dd>
+                                待收货
+                            </dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <dt class="glyphicon glyphicon-new-window">
+
+                            </dt>
+                            <dd>
+                                待评价
+                            </dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <dt class="glyphicon glyphicon-floppy-open">
+
+                            </dt>
+                            <dd>
+                                退款
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <ul>
+                    <li>
+                        <dl>
+                            <dt class="glyphicon glyphicon-log-in">
+
+                            </dt>
+                            <dd>
+                                优惠券
+                            </dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <dt class="glyphicon glyphicon-log-out">
+
+                            </dt>
+                            <dd>
+                                收货地址
+                            </dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <dt class="glyphicon glyphicon-new-window">
+
+                            </dt>
+                            <dd>
+                                客户反馈
+                            </dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <dt class="glyphicon glyphicon-floppy-open">
+
+                            </dt>
+                            <dd>
+                                关于我们
+                            </dd>
+                        </dl>
+                    </li>
+                </ul>
+            </section>
+            {% if islogin %}
+                <section>
+                    <div class="quit">
+                        <a href="{% url "app:logout" %}">退出</a>
+                    </div>
+                </section>
+            {% endif %}
+
+        </div>
+    </div>
+{% endblock %}

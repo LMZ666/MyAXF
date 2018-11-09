@@ -25,7 +25,7 @@ SECRET_KEY = 'o(ckrri=e!f!(fef^q&6!j_#qoo5+28de&@*b683n**q^r=t)i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
