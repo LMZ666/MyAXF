@@ -355,15 +355,18 @@ def makeOrder(request):
         ordergoods.goods = cart.goods
         ordergoods.num = cart.num
         ordergoods.save()
+        cart.delete()
         # 通过这样的中间关系，我们实现了一个order中对应了多个goods
 
     return HttpResponse(order)
 
 def order(request):
     token = request.session.get("token")
-    user = User.objects.get(token=token)
-    orders = Order.objects.filter(user=user)
-
+    if token:
+        user = User.objects.get(token=token)
+        orders = Order.objects.filter(user=user)
+    else:
+        return HttpResponse("<a href='/login/'>请登录</a>")
     data={
         "orders":orders
     }
