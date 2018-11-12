@@ -1,6 +1,5 @@
 from django.urls import path
 from App import views
-
 urlpatterns = [
     path("base/", views.base, name="base"),
     path("", views.home, name="home"),
@@ -22,4 +21,7 @@ urlpatterns = [
     path("makeorder/",views.makeOrder),
     path("getmoney/",views.getMoney,name="getmoney"),
     path("selectall/",views.selectAll),
+    path("notifyurl/",views.notifyurl,name="notifyurl"),
+    path("pay/",views.pay),
+    path("retrunurl/",views.returnurl,name="returnurl")
 ]
