@@ -363,8 +363,11 @@ def makeOrder(request):
 def order(request):
     token = request.session.get("token")
     if token:
-        user = User.objects.get(token=token)
-        orders = Order.objects.filter(user=user)
+        try:
+            user = User.objects.get(token=token)
+            orders = Order.objects.filter(user=user)
+        except:
+            return HttpResponse("<a href='/login/'>请登录</a>")
     else:
         return HttpResponse("<a href='/login/'>请登录</a>")
     data={
