@@ -8,6 +8,7 @@ from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
+from App.alipay import alipay_axf
 from App.models import Wheel, Nav, Mustbuy, Shop, MainShop, Foodtypes, Goods, User, Carts, Order, OrderGoods
 
 
@@ -363,11 +364,37 @@ def makeOrder(request):
 def order(request):
     token = request.session.get("token")
     if token:
-        user = User.objects.get(token=token)
-        orders = Order.objects.filter(user=user)
+        try:
+            user = User.objects.get(token=token)
+            orders = Order.objects.filter(user=user)
+        except:
+            return HttpResponse("<a href='/login/'>请登录</a>")
     else:
         return HttpResponse("<a href='/login/'>请登录</a>")
     data={
         "orders":orders
     }
     return render(request,"order/order.html",data)
+
+
+def notifyurl(request):
+    print("xxx 订单支付成功")
+    return JsonResponse({"msg":"success"})
+
+
+
+def returnurl(request):
+    print("xxx 订单支付成功，进行页面跳转")
+    return HttpResponse("上传成功。。。。。。")
+
+
+def pay(request):
+    identify = request.GET.get("identify")
+    url = alipay_axf.direct_pay(
+        subject='测试订单 -- ',
+        out_trade_no=identify,
+        total_amount=9.9,#付款金额
+        return_url ="http://47.106.210.190/axf/returnurl/"
+    )
+    alipay_url = 'https://openapi.alipaydev.com/gateway.do?{data}'.format(data=url)
+    return JsonResponse({"alipay_url":alipay_url})
